@@ -3,11 +3,12 @@ console.log("server is starting");
 var express = require("express");
 var cors = require("cors");
 var app = express();
+require("dotenv").config();
 
 const MongoClient = require("mongodb").MongoClient;
 
 MongoClient.connect(
-  "mongodb+srv://admin:bqf55mdw@cluster0.q2yau.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  process.env.CONNECTION_URL
 )
   .then((client) => {
     console.log("Connected to MongoDB");
@@ -17,7 +18,12 @@ MongoClient.connect(
     app.use(express.json());
     app.use(cors());
 
-    app.listen(3000, () => {console.log("listening. . .")});
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {console.log("listening. . .")});
+
+    app.get("/", (req, res) => {
+      res.send("Welcome to reactiom-time-api!");
+    });
 
     app.post("/scores", (req, res) => {
       const data = req.body;
