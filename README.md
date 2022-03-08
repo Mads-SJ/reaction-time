@@ -1,4 +1,4 @@
-# Reaction Time app
+# Reaction Time
 
 Made purely with HTML5, CSS3 and JavaScript, this responsive website lets you measure your reaction time and compare it to others. I used Express.js and MongoDB for the backend.
 
